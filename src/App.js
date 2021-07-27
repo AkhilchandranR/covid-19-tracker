@@ -4,6 +4,8 @@ import './App.css';
 import InfoBox from './InfoBox';
 import Map from './Map';
 import Table from './Table';
+import { sortData } from './util';
+import LineGraph from './LineGraph';
 
 function App() {
   //setup country state initialization to empty array
@@ -24,13 +26,15 @@ function App() {
           name: country.country,
           value: country.countryInfo.iso3,
         }));
+  
+        const sortedTableData = sortData(data);
+        setTableData(sortedTableData);
         setCountries(countries);
-        setTableData(data);
-      })
-    }
+      });
+    };
     getCountriesData();
    
-  }, [])
+  }, []);
 
   //works when the page loads....
   useEffect(()=>{
@@ -109,9 +113,10 @@ function App() {
       <div className="app__right">
             <Card>
               <CardContent>
-                <h3>live caes by country</h3>
+                <h3>live cases by country</h3>
                 <Table countries={tableData}/>
                 <h3>workdwide new cases</h3>
+                <LineGraph/>
               </CardContent>
             </Card>
       </div>     
