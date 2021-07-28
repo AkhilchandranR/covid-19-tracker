@@ -1,0 +1,21 @@
+.map{
+    height: 500px;
+    background-color: white;
+    padding: 1rem;
+    border-radius: 20px;
+    margin-top: 16px;
+    box-shadow: 0 0 8px -4px rgba(0,0,0,0.5);
+}
+.map.leaflet-container{
+    overflow: visible !important;
+    width: 100%;
+    position: unset;
+}
+.leaflet-top, .leaflet-bottom {
+    position: unset;
+    z-index: 1000;
+    pointer-events: none;
+}
+.markercluster-map.leaflet-container.leaflet-touch.leaflet-fade-anim.leaflet-grab.leaflet-touch-drag.leaflet-touch-zoom {
+    height: 100% !important;
+}
