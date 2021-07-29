@@ -16,6 +16,10 @@ function App() {
   const [country , setCountry] = useState('worldwide');
   const [countryInfo, setCountryInfo] = useState({});
   const [tableData, setTableData] = useState([]);
+  const [mapCenter, setMapCenter] = useState({
+    lat: 34.80746, lng: -40.4796});
+  const [mapZoom, setMapZoom] = useState(3);
+  const [mapCountries, setMapCountries] = useState([]);
   //useeffect runs a piece of code on a given condition
   useEffect(() => {
     //runs once whwn component loads and when country variable changes,in [] is a dependancy
@@ -30,6 +34,7 @@ function App() {
   
         const sortedTableData = sortData(data);
         setTableData(sortedTableData);
+        setMapCountries(data);
         setCountries(countries);
       });
     };
@@ -61,6 +66,8 @@ function App() {
     .then(data=>{
       setCountry(countryCode);
       setCountryInfo(data);
+      setMapCenter([data.countryInfo.lat,data.countryInfo.long]);
+      setMapZoom(4);
     })
   };
 
@@ -107,7 +114,10 @@ function App() {
         {/* infobox ends */}
 
         {/* map */}
-        <Map/>
+        <Map center={mapCenter} 
+        zoom={mapZoom}
+        countries={mapCountries}
+        casesType="cases"/>
         {/* map ends */}
       </div>
 
