@@ -1,0 +1,6 @@
+.infobox__div{
+    flex: 1;
+}
+.infobox__div:not(:last-child){
+    margin-right: 10px;
+}
